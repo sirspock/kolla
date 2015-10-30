@@ -1,0 +1,6 @@
+[openstack-kilo]
+name=OpenStack Kilo Repository
+baseurl=http://guock.com/rhel/7/x86_64/openstack-kilo/
+skip_if_unavailable=0
+gpgcheck=0
+enabled=1

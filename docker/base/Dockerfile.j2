@@ -76,15 +76,14 @@ RUN rpm -e --nodeps systemd-container systemd-container-libs \
     # Endif for base_distro centos
 
     {% if base_distro == 'rhel' %}
-
+RUN yum -y remove subscription-manager
+COPY kilo.yum.repo /etc/yum.repos.d/kilo.repo
+COPY redhat.yum.repo /etc/yum.repos.d/redhat.repo
 # Enable couple required repositories for all RHEL builds
 # Turn on EPEL throughout the build
 RUN yum install -y \
         https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
-    && yum clean all \
-    && subscription-manager repos --enable rhel-7-server-optional-rpms \
-    && subscription-manager repos --enable rhel-7-server-extras-rpms
-
+    && yum clean all 
     {% endif %}
     # Endif for base_distro RHEL
 
